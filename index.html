@@ -180,6 +180,20 @@
     transition:.2s;
   }
   .tl-dots i.on{background:#fff;transform:scale(1.3)}
+  .tl-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(28,20,15,.45);color:#f0e6d6;font-size:15px;line-height:1;
+    display:none;align-items:center;justify-content:center;
+    backdrop-filter:blur(4px);transition:background .2s;
+  }
+  .tl-arrow:hover{background:rgba(28,20,15,.7)}
+  .tl-arrow.prev{left:10px}
+  .tl-arrow.next{right:10px}
+  /* 마우스 환경에서만 표시 */
+  @media (hover:hover) and (pointer:fine){
+    .tl-arrow{display:flex}
+  }
 
   .ai-badge{
     position:absolute;top:8px;right:8px;z-index:3;
@@ -623,6 +637,18 @@
       dots.appendChild(d);
     });
     track.parentElement.appendChild(dots);
+    // 데스크톱용 좌우 화살표
+    [['prev', -1, '‹'], ['next', 1, '›']].forEach(function(a){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tl-arrow ' + a[0];
+      btn.textContent = a[2];
+      btn.setAttribute('aria-label', a[0] === 'prev' ? '이전 사진' : '다음 사진');
+      btn.addEventListener('click', function(){
+        track.scrollBy({ left: a[1] * track.clientWidth, behavior: 'smooth' });
+      });
+      track.parentElement.appendChild(btn);
+    });
     var timer = null;
     track.addEventListener('scroll', function(){
       clearTimeout(timer);
