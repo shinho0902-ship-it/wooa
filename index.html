@@ -22,6 +22,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{scroll-behavior:smooth}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   body{
     font-family:"Noto Sans KR",system-ui,sans-serif;
     background:var(--bg);
@@ -176,9 +177,10 @@
 
   .ai-badge{
     position:absolute;top:8px;right:8px;z-index:3;
-    font-size:8px;font-weight:500;letter-spacing:.05em;color:rgba(240,230,214,.85);
-    background:rgba(28,20,15,.4);border-radius:999px;padding:2px 7px;
+    font-size:10px;font-weight:400;letter-spacing:.04em;color:rgba(240,230,214,.8);
+    background:rgba(28,20,15,.38);border-radius:999px;padding:2px 7px;
     backdrop-filter:blur(4px);
+    transform:scale(.7);transform-origin:top right;
   }
 
   /* 사진 크게 보기 */
