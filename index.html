@@ -195,6 +195,14 @@
     position:absolute;bottom:24px;left:0;right:0;text-align:center;
     font-size:12px;font-weight:300;color:#b9a98f;
   }
+  #lightbox .lb-down{
+    position:absolute;top:16px;right:16px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+    font-size:13px;font-weight:500;color:#f0e6d6;
+    background:rgba(255,255,255,.12);border:1px solid rgba(201,161,90,.45);
+    border-radius:999px;padding:8px 14px;backdrop-filter:blur(4px);
+  }
+  #lightbox .lb-down:active{transform:scale(.95)}
 
   /* D-DAY */
   .dday{
@@ -554,8 +562,13 @@
   var lbHint = document.createElement('div');
   lbHint.className = 'lb-hint';
   lbHint.textContent = '화면을 누르면 닫혀요';
+  var lbDown = document.createElement('a');
+  lbDown.className = 'lb-down';
+  lbDown.innerHTML = '&#8595; 저장';
+  lbDown.addEventListener('click', function(e){ e.stopPropagation(); });
   lb.appendChild(lbImg);
   lb.appendChild(lbHint);
+  lb.appendChild(lbDown);
   document.body.appendChild(lb);
   lb.addEventListener('click', function(){ lb.classList.remove('open'); });
 
@@ -572,6 +585,8 @@
     slide.appendChild(img);
     img.addEventListener('click', function(){
       lbImg.src = img.src;
+      lbDown.href = img.src;
+      lbDown.download = '우아_' + img.src.split('/').pop();
       lb.classList.add('open');
     });
   });
