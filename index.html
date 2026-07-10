@@ -175,11 +175,10 @@
   .tl-dots i.on{background:var(--accent);transform:scale(1.25)}
 
   .ai-badge{
-    position:absolute;top:10px;right:10px;z-index:3;
-    display:inline-flex;align-items:center;gap:4px;
-    font-size:10.5px;font-weight:500;letter-spacing:.04em;color:#f0e6d6;
-    background:rgba(28,20,15,.55);border:1px solid rgba(201,161,90,.35);
-    border-radius:999px;padding:4px 10px;backdrop-filter:blur(4px);
+    position:absolute;top:8px;right:8px;z-index:3;
+    font-size:8px;font-weight:500;letter-spacing:.05em;color:rgba(240,230,214,.85);
+    background:rgba(28,20,15,.4);border-radius:999px;padding:2px 7px;
+    backdrop-filter:blur(4px);
   }
 
   /* 사진 크게 보기 */
@@ -286,21 +285,6 @@
   <svg class="wave" viewBox="0 0 480 40" preserveAspectRatio="none" aria-hidden="true">
     <path fill="currentColor" d="M0,40 L0,18 C120,38 360,0 480,20 L480,40 Z"></path>
   </svg>
-
-  <!-- 한복 입은 우아 (AI) -->
-  <section>
-    <div class="sec-head reveal">
-      <span class="sec-title">한복 입은 우아</span>
-    </div>
-    <p class="sec-desc reveal">돌잔치를 기다리며 AI로 미리 그려본 우아의 한복 모습이에요 ✨</p>
-    <div class="tl-photo reveal" style="margin:6px 4px 14px">
-      <span class="ai-badge">✨ AI 생성 사진</span>
-      <div class="tl-track">
-        <img src="photos/hanbok-01.jpg" alt="AI로 생성한 한복 입은 우아" />
-        <img src="photos/hanbok-02.jpg" alt="AI로 생성한 한복 입은 우아" loading="lazy" />
-      </div>
-    </div>
-  </section>
 
   <!-- 인사말 -->
   <section>
@@ -487,6 +471,21 @@
         </div>
       </div>
       <p class="dol-msg" id="dol-msg">두구두구… 우아의 선택은 돌잔치 당일에 공개됩니다 👀</p>
+    </div>
+  </section>
+
+  <!-- 한복 입은 우아 (AI) -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-title">한복 입은 우아</span>
+    </div>
+    <p class="sec-desc reveal">돌잔치를 기다리며 AI로 미리 그려본 우아의 한복 모습이에요 ✨</p>
+    <div class="tl-photo reveal" style="margin:6px 4px 14px">
+      <span class="ai-badge">AI 생성</span>
+      <div class="tl-track">
+        <img src="photos/hanbok-01.jpg" alt="AI로 생성한 한복 입은 우아" loading="lazy" />
+        <img src="photos/hanbok-02.jpg" alt="AI로 생성한 한복 입은 우아" loading="lazy" />
+      </div>
     </div>
   </section>
 
