@@ -576,7 +576,17 @@
   lb.appendChild(lbHint);
   lb.appendChild(lbDown);
   document.body.appendChild(lb);
-  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+
+  // 뒤로가기를 누르면 페이지가 아닌 라이트박스만 닫히게 히스토리에 한 단계 등록
+  function closeLightbox(fromPopstate){
+    if(!lb.classList.contains('open')) return;
+    lb.classList.remove('open');
+    if(!fromPopstate && history.state && history.state.lightbox){
+      history.back();
+    }
+  }
+  window.addEventListener('popstate', function(){ closeLightbox(true); });
+  lb.addEventListener('click', function(){ closeLightbox(false); });
 
   // 슬라이드마다 흐린 배경을 깔고, 탭하면 크게 보기
   document.querySelectorAll('.tl-track img').forEach(function(img){
@@ -594,6 +604,7 @@
       lbDown.href = img.src;
       lbDown.download = '우아_' + img.src.split('/').pop();
       lb.classList.add('open');
+      history.pushState({lightbox: true}, '');
     });
   });
 
