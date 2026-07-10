@@ -145,7 +145,7 @@
     box-shadow:0 6px 18px -14px rgba(60,40,25,.4);
   }
   .tl-photo span{font-size:34px}
-  .tl-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .tl-photo img{width:100%;height:100%;object-fit:contain;display:block}
 
   /* 사진 여러 장 스와이프 */
   .tl-track{
@@ -154,17 +154,17 @@
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
   }
   .tl-track::-webkit-scrollbar{display:none}
-  .tl-track img{flex:0 0 100%;scroll-snap-align:start}
+  .tl-track img{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always}
   .tl-dots{
     position:absolute;left:0;right:0;bottom:10px;
     display:flex;justify-content:center;gap:6px;pointer-events:none;
   }
   .tl-dots i{
     width:6px;height:6px;border-radius:50%;
-    background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.35);
+    background:rgba(43,37,33,.28);box-shadow:0 1px 3px rgba(255,255,255,.4);
     transition:.2s;
   }
-  .tl-dots i.on{background:#fff;transform:scale(1.25)}
+  .tl-dots i.on{background:var(--accent);transform:scale(1.25)}
 
   /* D-DAY */
   .dday{
