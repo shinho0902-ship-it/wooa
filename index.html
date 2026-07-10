@@ -113,17 +113,39 @@
   }
   .orn::after{background:linear-gradient(90deg,var(--gold),transparent)}
 
-  /* 아기 사진 */
-  .baby-photo{
-    position:relative;border-radius:20px;overflow:hidden;margin:6px 4px 14px;
-    aspect-ratio:4/5;
-    background:
-      radial-gradient(80% 60% at 50% 30%, #f3e7d7, #e9dcc8);
-    border:1px solid var(--line);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-    color:#b3a48f;font-size:13px;font-weight:300;
+  /* 성장 타임라인 */
+  .timeline{position:relative;margin:8px 4px 10px;padding-left:26px}
+  .timeline::before{
+    content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;
+    background:linear-gradient(180deg,var(--gold),var(--line));border-radius:2px;
   }
-  .baby-photo span{font-size:44px}
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:6px}
+  .tl-item::before{
+    content:"";position:absolute;left:-26px;top:4px;width:16px;height:16px;
+    border-radius:50%;background:var(--bg);
+    border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(201,161,90,.15);
+  }
+  .tl-item:last-child::before{background:var(--gold)}
+  .tl-date{
+    font-family:"Nanum Myeongjo",serif;font-size:13px;font-weight:700;
+    color:var(--accent);letter-spacing:.06em;
+  }
+  .tl-title{
+    font-family:"Nanum Myeongjo",serif;font-size:18px;font-weight:800;
+    letter-spacing:-.01em;margin-top:2px;
+  }
+  .tl-cap{font-size:13px;color:var(--ink-soft);font-weight:300;margin-top:3px}
+  .tl-photo{
+    position:relative;margin-top:12px;border-radius:16px;overflow:hidden;
+    aspect-ratio:4/3;border:1px solid var(--line);
+    background:radial-gradient(80% 60% at 50% 30%, #f3e7d7, #e9dcc8);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    color:#b3a48f;font-size:12.5px;font-weight:300;
+    box-shadow:0 6px 18px -14px rgba(60,40,25,.4);
+  }
+  .tl-photo span{font-size:34px}
+  .tl-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
   /* D-DAY */
   .dday{
@@ -216,13 +238,42 @@
   <section>
     <div class="sec-head reveal">
       <span class="sec-no">01</span>
-      <span class="sec-title">우리 아기</span>
+      <span class="sec-title">우아의 일 년</span>
     </div>
-    <p class="sec-desc reveal">지난 일 년, 가장 예뻤던 순간이에요.</p>
-    <!-- TODO: 아기 사진으로 교체 (<img src="baby.jpg"> 등) -->
-    <div class="baby-photo reveal">
-      <span>👶</span>
-      여기에 아기 사진이 들어가요
+    <p class="sec-desc reveal">태어난 날부터 지금까지, 시기별로 담아봤어요.</p>
+
+    <div class="timeline">
+      <!-- TODO: 각 tl-photo 안의 자리표시를 <img src="photos/파일명.jpg" alt="" />로 교체 -->
+      <div class="tl-item reveal">
+        <div class="tl-date">2025. 07. 11</div>
+        <div class="tl-title">세상에 온 날</div>
+        <div class="tl-cap">우리에게 와줘서 고마워, 우아야.</div>
+        <div class="tl-photo"><span>🐣</span>태어난 날 사진</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2025. 08. 29</div>
+        <div class="tl-title">50일</div>
+        <div class="tl-cap">눈을 맞추고 방긋 웃기 시작했어요.</div>
+        <div class="tl-photo"><span>🌱</span>50일 사진</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2025. 10. 18</div>
+        <div class="tl-title">100일</div>
+        <div class="tl-cap">뒤집기에 성공하고 목도 튼튼해졌어요.</div>
+        <div class="tl-photo"><span>🌼</span>100일 사진</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2026. 01. 26</div>
+        <div class="tl-title">200일</div>
+        <div class="tl-cap">혼자 앉아서 놀고, 옹알이가 늘었어요.</div>
+        <div class="tl-photo"><span>❄️</span>200일 사진</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2026. 07. 11</div>
+        <div class="tl-title">첫 번째 생일</div>
+        <div class="tl-cap">씩씩하게 기어다니는 지금, 첫돌을 맞이해요.</div>
+        <div class="tl-photo"><span>🎂</span>최근 사진</div>
+      </div>
     </div>
     <div class="dday reveal">
       <div class="unit"><div class="num" id="dd-days">--</div><div class="lab">DAYS</div></div>
