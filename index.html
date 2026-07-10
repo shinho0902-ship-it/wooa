@@ -147,6 +147,25 @@
   .tl-photo span{font-size:34px}
   .tl-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
+  /* 사진 여러 장 스와이프 */
+  .tl-track{
+    display:flex;width:100%;height:100%;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .tl-track::-webkit-scrollbar{display:none}
+  .tl-track img{flex:0 0 100%;scroll-snap-align:start}
+  .tl-dots{
+    position:absolute;left:0;right:0;bottom:10px;
+    display:flex;justify-content:center;gap:6px;pointer-events:none;
+  }
+  .tl-dots i{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.35);
+    transition:.2s;
+  }
+  .tl-dots i.on{background:#fff;transform:scale(1.25)}
+
   /* D-DAY */
   .dday{
     display:flex;justify-content:center;gap:10px;margin:20px 4px 6px;
@@ -269,7 +288,13 @@
         <div class="tl-date">2025. 07. 16</div>
         <div class="tl-title">세상에 온 날</div>
         <div class="tl-cap">우리에게 와줘서 고마워, 우아야.</div>
-        <div class="tl-photo"><img src="photos/test.jpg" alt="태어난 날의 우아" /></div>
+        <div class="tl-photo">
+          <div class="tl-track">
+            <img src="photos/test.jpg" alt="태어난 날의 우아 1" />
+            <img src="photos/test.jpg" alt="태어난 날의 우아 2" />
+            <img src="photos/test.jpg" alt="태어난 날의 우아 3" />
+          </div>
+        </div>
       </div>
       <div class="tl-item reveal">
         <div class="tl-date">2025. 09. 03</div>
@@ -452,6 +477,30 @@
     if(label) label.textContent = 'D-' + d;
   }
   if(EVENT_DATE){ tick(); setInterval(tick, 1000); }
+
+  // 타임라인 사진 슬라이더: 2장 이상이면 점 인디케이터 생성
+  document.querySelectorAll('.tl-track').forEach(function(track){
+    var imgs = track.querySelectorAll('img');
+    if(imgs.length < 2) return;
+    var dots = document.createElement('div');
+    dots.className = 'tl-dots';
+    imgs.forEach(function(_, i){
+      var d = document.createElement('i');
+      if(i === 0) d.className = 'on';
+      dots.appendChild(d);
+    });
+    track.parentElement.appendChild(dots);
+    var timer = null;
+    track.addEventListener('scroll', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        var idx = Math.round(track.scrollLeft / track.clientWidth);
+        dots.querySelectorAll('i').forEach(function(d, i){
+          d.classList.toggle('on', i === idx);
+        });
+      }, 60);
+    });
+  });
 
   // 돌잡이 예측 (하나만 선택)
   var dolItems = document.querySelectorAll('.dol-item');
